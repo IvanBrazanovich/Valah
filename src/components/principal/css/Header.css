@@ -1,0 +1,82 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  max-height: 100px;
+  padding: 0 2rem !important;
+}
+
+.logo {
+  width: 10rem;
+}
+
+header li {
+  padding: 1rem !important;
+}
+.contenedor-izquierda {
+  display: flex;
+}
+
+.navegacion ul {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.navegacion {
+  text-align: center;
+}
+
+ul li {
+  list-style: none;
+}
+
+.contenedor-derecha ul {
+  display: flex;
+  height: 100% !important;
+  align-items: center;
+}
+
+/*Hero*/
+.hero {
+  background-image: url("../../../img/valah/hero.jpg");
+  height: 600px;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-overlay {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.hero-title {
+  z-index: auto;
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  height: 100%;
+  left: 100px;
+}
+
+.hero-title h1 {
+  line-height: 50px;
+  font-size: 50px;
+  color: #ffffff;
+  width: 700px;
+}
+
+.hero-title h1 span {
+  font-size: 30px;
+}
+
+.hero-title button {
+  color: #ffffff;
+  height: 40px;
+  width: 200px;
+  font-size: 20px;
+  border-radius: 6px;
+  background-color: #8aa1b1;
+  border: none;
+}

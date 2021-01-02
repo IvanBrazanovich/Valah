@@ -1,0 +1,58 @@
+.contenedor {
+  max-width: 1240px;
+  margin: 4rem auto !important;
+}
+
+.first-text {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  max-width: 55rem;
+  margin: auto !important;
+}
+
+.first-text h1 {
+  font-size: 3.5rem;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+}
+
+.first-text p {
+  font-size: 1.5rem;
+  margin: 10px 0 !important;
+  line-height: 1.5;
+}
+
+/*cajas*/
+.feature-content {
+  text-align: center;
+  margin-top: 5rem !important;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.feature {
+  padding: 4rem 2rem !important;
+}
+
+.feature img {
+  max-width: 12rem;
+}
+
+.feature p {
+  max-width: 60%;
+  margin: 0 auto !important;
+}
+
+.feature h2 {
+  padding: 1rem 0 !important;
+  color: #000000;
+  font-weight: 500;
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+.border-right {
+  border-right: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
