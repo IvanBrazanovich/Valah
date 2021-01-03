@@ -12,7 +12,7 @@ import store from "./store"
 function App() {
   return (
     <Router>
-      <Provider store={[store]} >
+      <Provider store={store} >
       <div className="container1">
       <Switch>
         <Route exact path="/" component={Principal}/>

@@ -3,14 +3,17 @@ import "./css/Basic.css"
 import "./css/Inicio.css"
 import Logo from "../../img/valah/Valah-logos_black.png"
 
+
 const Inicio = () => {
+
     return ( 
         <Fragment>
         <div className="all">
             <div className="container">
                 <img src={Logo} alt=""/>
                 <h2>Iniciar Sesión</h2>
-                <form>
+                <form
+                >
                     <div>
                         <input name="" type="text" required="" placeholder="alguien@example.com"/>
                     </div>
@@ -21,7 +24,7 @@ const Inicio = () => {
                     </div>
                 </form>
 
-                <button>Siguiente</button>
+                <button type="submit">Siguiente</button>
 
             </div>
         </div>

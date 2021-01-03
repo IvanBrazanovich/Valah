@@ -4,10 +4,14 @@
       "id": 1,
       "email": "Jugo de Zanahoria",
       "password": "31111"
+    },
+    {
+      "email": "Hola",
+      "password": "como tas",
+      "id": 2
     }
   ],
-
-   "precio": [
+  "precio": [
     {
       "id": 1,
       "email": "NEGRASOOO",
