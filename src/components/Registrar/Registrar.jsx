@@ -6,12 +6,21 @@ import Logo from "../../img/valah/Valah-logos_black.png"
 import { useDispatch, useSelector } from "react-redux"
 
 //Actions de redux
-import { crearNuevaCuentaAction } from "../../actions/clientesActions"
+import { crearNuevaCuentaAction, obtenerCuentasAction } from "../../actions/clientesActions"
 
 
 
 const Registrar = () => {
 
+
+    //States para los errores 
+    const [ erroremail, guardarErrorEmail ] = useState(false)
+    const [ errorpassword, guardarErrorPassword ] = useState(false)
+
+    //Expresiones regular |
+    const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    const passwordregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     //UseState para las variables 
     const [ email, guardarEmail ] = useState("")
     const [ password, guardarPassword ] = useState("")
@@ -21,12 +30,19 @@ const Registrar = () => {
     const dispatch = useDispatch();
 
     const agregarCuenta = cuenta =>  dispatch( crearNuevaCuentaAction(cuenta) )
+
     //Cuando el usuario haga submit
      const submitCuenta = e => {
         e.preventDefault();
 
         //Validar formulario 
-        if( email.trim() === "" || password.trim() === "" ) {
+        
+        if (!er.test(email)){
+            return;
+        }
+
+        if (!passwordregex.test(password)) {
+            //8 carácteres, 1 letra mayúscula y 1 número
             return;
         }
 
@@ -40,6 +56,45 @@ const Registrar = () => {
             password
         });
     }
+
+   
+
+    const dobleFunctionEmail = (e) => {
+        //State del email
+        guardarEmail(e.target.value);
+
+        //Para ver errores
+        errorEmail(e)
+
+    }
+
+    //Errores en email
+    const errorEmail = e => {
+        if (!er.test (e.target.value)) {
+            guardarErrorEmail(true)
+            return;
+        }
+        guardarErrorEmail(false)
+    };
+
+
+    //Doble password
+     const dobleFunctionPassword = e => {
+        //State del email
+        guardarPassword(e.target.value);
+
+        //Para ver errores
+        errorPassword(e)
+    }
+
+    const errorPassword = e => {
+        if (!passwordregex.test (e.target.value)) {
+            guardarErrorPassword(true)
+            return;
+        }
+        guardarErrorPassword(false)
+    };
+ 
 
     return ( 
         <Fragment>
@@ -57,8 +112,10 @@ const Registrar = () => {
                          required=""
                          placeholder="alguien@example.com"
                          value={email}
-                         onChange={ e => guardarEmail(e.target.value) }
+                         onChange={ e => dobleFunctionEmail(e) }
                          />
+
+                         {erroremail ? <p className="errorForm">El email no es válido</p> : null}
                     </div>
 
 
@@ -69,11 +126,13 @@ const Registrar = () => {
                         required="" 
                         placeholder="contraseña"
                         value={password}
-                        onChange = { e => guardarPassword(e.target.value )}
+                        onChange = { e => dobleFunctionPassword(e) }
                         />
+                         {errorpassword ? <p className="errorForm">8 carácteres, 1 mayúscula, 1 número</p> : null}
+
                     </div>
                      
-                      <button type="submit" > Registrarme</button>
+                      <button className="button-registrar" type="submit" > Registrarme</button>
 
                 </form>
 

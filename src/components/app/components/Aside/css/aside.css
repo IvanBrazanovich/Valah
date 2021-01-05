@@ -1,0 +1,9 @@
+.contenedor-side {
+  background-color: #5981e8ec;
+  height: 100vh;
+}
+
+.contenedor-side i {
+  width: 1rem !important;
+  height: 1rem !important;
+}

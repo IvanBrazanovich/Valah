@@ -50,7 +50,7 @@ input:focus {
   -webkit-box-shadow: none;
 }
 
-button {
+.button-inicio {
   position: relative;
   left: 14rem;
   top: 1rem;
@@ -61,3 +61,14 @@ button {
   border: none;
 }
 /*New*/
+
+/*Error mensaje*/
+.error-text {
+  color: #ffffff;
+  width: 100%;
+  margin-top: 2.5rem !important;
+  text-align: center;
+  background: rgb(228, 114, 116);
+  text-transform: uppercase;
+  padding: 0.3rem 0.4rem !important;
+}

@@ -50,7 +50,7 @@ input:focus {
   -webkit-box-shadow: none;
 }
 
-button {
+.button-registrar {
   position: relative;
   left: 14rem;
   top: 1rem;

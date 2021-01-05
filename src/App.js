@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Principal from "./components/principal/Principal.jsx"
 import Inicio from "./components/inicio/Inicio.jsx"
 import Registrar from "./components/Registrar/Registrar.jsx"
+import AppPrincipal from "./components/app/App"
 
 
 
@@ -18,6 +19,8 @@ function App() {
         <Route exact path="/" component={Principal}/>
         <Route exact path="/inicio" component={Inicio}/>
         <Route exact path="/registrar" component={Registrar}/>
+        <Route exact path="/app" component={AppPrincipal}/>
+
 
       </Switch>
 

@@ -14,3 +14,7 @@ body {
   margin: 0 !important;
   padding: 0 !important;
 }
+
+.errorForm {
+  color: rgb(109, 153, 181);
+}
