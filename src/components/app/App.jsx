@@ -3,7 +3,9 @@ import "./styles.css"
 //Partes
 import Money from "./components/Money"
 import Probar from "./components/Probar"
+import Presupuestador from "./components/Presupuestador"
 import Aside from "./components/Aside/Aside"
+import Page from "./components/Aside/Page"
 
 import { useEffect, useState } from "react"
 
@@ -15,18 +17,20 @@ const App = () => {
             //Variables
     const [ money, guardarMoney ] = useState(false);
     const [ probando, guardarProbando ] = useState(false);
+    const [ presupuestador, guardarPresupuestador ] = useState(false);
 
 
-    const stateV = useSelector( state => state.app.pagactual)
+    const stateV = useSelector( state => state.presupuesto.pagactual)
 
+    console.log(stateV)
     useEffect ( () => {
 
                 
-        guardarMoney(false);
+        guardarPresupuestador(false);
         guardarProbando(false);
                 
-        if (stateV === "money") {
-            guardarMoney(true)
+        if (stateV === "presupuestador") {
+            guardarPresupuestador(true)
         }  else if (stateV === "probando") {
             guardarProbando(true)
         }
@@ -42,8 +46,8 @@ const App = () => {
             </div>
 
             <div className="contenedor-principal">
-
-
+                
+                {presupuestador ? <Presupuestador /> : null}
                 {money ? <Money /> : null}
                 {probando ? <Probar /> : null}
             </div>

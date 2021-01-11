@@ -1,10 +1,10 @@
 import { combineReducers } from "redux"
 
 import  cuentasReducer from "./clienteReducers";
-import appReducer from "./appReducers"
+import presupuestoReducer from "./presupuestoReducers"
 
 
 export default combineReducers ({
     cuentas: cuentasReducer,
-    app: appReducer
+    presupuesto: presupuestoReducer
 });

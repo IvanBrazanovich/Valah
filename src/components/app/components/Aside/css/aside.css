@@ -1,9 +1,86 @@
 .contenedor-side {
-  background-color: #5981e8ec;
+  background-color: #f1f4fcec;
   height: 100vh;
 }
 
 .contenedor-side i {
   width: 1rem !important;
   height: 1rem !important;
+}
+
+.nombre-usuario {
+  padding: 1rem !important;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+#icon-user {
+  color: rgb(175, 179, 238);
+  font-size: 2.5rem;
+}
+
+.nombre-usuario h5 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  align-self: center;
+  margin-left: 1rem !important;
+}
+
+.template p {
+  font-size: 1rem;
+}
+
+.contenedor-templates {
+  width: 70% !important;
+  margin: 1rem auto !important;
+}
+
+.contenedor-templates div {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.relleno {
+  width: 80%;
+  margin: auto !important;
+}
+
+.relleno-div {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 0.3rem 0 !important;
+}
+
+.relleno-div p {
+  padding-left: 0.3rem !important;
+}
+
+hr {
+  width: 70%;
+  height: 0.1rem;
+  margin: 1rem auto 0.3rem auto !important;
+  background-color: rgba(175, 179, 238, 0.7);
+  border: 0;
+}
+
+.template {
+  padding: 0.3rem 0 !important;
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.add-template span {
+  color: black;
+  position: relative;
+  right: 0.2rem;
+}
+
+/*Page*/
+
+.divider {
+  width: 100% !important;
+}
+
+.page {
+  margin: 1rem 2rem !important;
 }
