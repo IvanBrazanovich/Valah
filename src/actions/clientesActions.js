@@ -24,6 +24,9 @@ export function crearNuevaCuentaAction(cuenta) {
             //Insertar en la API
             clienteAxios.post('/cuentas', cuenta)
 
+            //Para el JSON de la app
+            clienteAxios.post('/cuentasInfo', cuenta)
+
             //Si todo sale bien, actualizar el state
             dispatch ( agregarCuentaExito( cuenta ) );
 

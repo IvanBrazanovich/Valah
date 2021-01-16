@@ -3,14 +3,31 @@ import "./css/Basic.css"
 import "./css/Inicio.css"
 import Logo from "../../img/valah/Valah-logos_black.png"
 
+import { Redirect } from "react-router-dom"
+
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 
 
-import { obtenerCuentasAction } from "../../actions/clientesActions"
+import { obtenerCuentasAction } from "../../actions/clientesActions";
+
+import { obtenerCuentaActualAction } from "../../actions/presupuestoActions"
+
 
 
 const Inicio = () => {
+
+    const [ change, guardarChange] = useState( false );
+
+//let change
+    
+    
+
+
+  
+    
+
+
 
     //State para las variables 
     const [ email, guardarEmail ] = useState("")
@@ -39,9 +56,13 @@ const Inicio = () => {
      //Mandar a llamar a la función en clienteAcions
      const obtenerCuentas = () => dispatch( obtenerCuentasAction() )
 
+     //Mandar cuenta actual 
+     const cuentaActual = cuenta => dispatch( obtenerCuentaActualAction(cuenta) )
+
 
     //Submit
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
         //Validar formulario 
@@ -52,8 +73,9 @@ const Inicio = () => {
 
         actualizarError(false);
 
-
+        //Confirmar que esté en el arreglo
         const existe = cuentas.some(cuenta => cuenta.email === email & cuenta.password === password);
+       
 
 
         if(!existe) {
@@ -63,9 +85,13 @@ const Inicio = () => {
 
         guardarErrorExiste(false)
 
-        console.log("pasastes")
+        cuentaActual(email)
+
+        guardarChange(true)
+     
 
     };
+
 
     return ( 
         <Fragment>
@@ -112,6 +138,9 @@ const Inicio = () => {
 
             </div>
         </div>
+
+        
+       { change ? <Redirect to="/app" /> : null}
 
        
 </Fragment>

@@ -6,7 +6,7 @@ import LowPresupuesto from "./Layout/LowPresupuesto"
 import "./Aside/css/Presupuestador.css"
 
 
-const Presupuestador = () => {
+const Presupuestador = ({ actualId }) => {
     
 
     const [ showb, guardarShowb ] = useState(true);
@@ -32,7 +32,9 @@ const Presupuestador = () => {
 
         <div className="presupuestador page">
             
-        <TopPrespupuesto />
+        <TopPrespupuesto
+            actualId = {actualId}
+        />
         <LowPresupuesto />
 
 

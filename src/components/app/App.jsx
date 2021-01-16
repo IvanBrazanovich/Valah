@@ -7,12 +7,34 @@ import Presupuestador from "./components/Presupuestador"
 import Aside from "./components/Aside/Aside"
 import Page from "./components/Aside/Page"
 
+import { obtenerInfoUsuarioAction } from "../../actions/presupuestoActions"
+
 import { useEffect, useState } from "react"
 
 
 import { useSelector, useDispatch } from "react-redux"
 const App = () => {
 
+
+ const dispatch = useDispatch()
+
+
+         //Ver quien es el actual 
+        const cuentaActual = useSelector( state => state.presupuesto.cuentaActual )
+        const actualId = useSelector( state => state.presupuesto.actualId )
+
+
+
+
+       
+
+    //Obtener info de las cuentas 
+        const obtenerInfoUsuario = (cuentaActual) => dispatch( obtenerInfoUsuarioAction(cuentaActual) );
+
+
+             useEffect( () => {
+            obtenerInfoUsuario(cuentaActual);
+        }, []);
 
             //Variables
     const [ money, guardarMoney ] = useState(false);
@@ -22,7 +44,6 @@ const App = () => {
 
     const stateV = useSelector( state => state.presupuesto.pagactual)
 
-    console.log(stateV)
     useEffect ( () => {
 
                 
@@ -47,7 +68,9 @@ const App = () => {
 
             <div className="contenedor-principal">
                 
-                {presupuestador ? <Presupuestador /> : null}
+                {presupuestador ? <Presupuestador 
+                    actualId = {actualId}
+                /> : null}
                 {money ? <Money /> : null}
                 {probando ? <Probar /> : null}
             </div>

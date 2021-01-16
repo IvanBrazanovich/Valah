@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import "./css/Basic.css"
 import "./css/Registrar.css"
 import Logo from "../../img/valah/Valah-logos_black.png"
@@ -13,9 +13,29 @@ import { crearNuevaCuentaAction, obtenerCuentasAction } from "../../actions/clie
 const Registrar = () => {
 
 
+    
+
+      //Mandar a llamar a la función en clienteAcions
+     const obtenerCuentas = () => dispatch( obtenerCuentasAction() )
+
+
+    //Obtener cuentas
+        const cuentas = useSelector(state => state.cuentas.cuentas)
+
+
+         //Obtener cuentas
+
+    useEffect( () => {
+
+         obtenerCuentas()
+
+    }, [])
+
+
     //States para los errores 
     const [ erroremail, guardarErrorEmail ] = useState(false)
     const [ errorpassword, guardarErrorPassword ] = useState(false)
+    const [ errorexiste, guardarErrorExiste ] = useState(false)
 
     //Expresiones regular |
     const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -46,14 +66,25 @@ const Registrar = () => {
             return;
         }
 
+         //Confirmar que sea diferente a las que hay
+        const existe = cuentas.some(cuenta => cuenta.email === email & cuenta.password === password);
+       
+
+
+        if(existe) {
+            guardarErrorExiste(true);
+            return;
+        }
+
+        guardarErrorExiste(false)
 
         //Si no hay errores
 
 
         //Crear nueva cuenta 
         agregarCuenta({
-            email,
-            password
+            email: email,
+            password: password
         });
     }
 
@@ -133,6 +164,7 @@ const Registrar = () => {
                     </div>
                      
                       <button className="button-registrar" type="submit" > Registrarme</button>
+                           {errorexiste ? <p className="error-text">Cuenta Inválida</p> : null}
 
                 </form>
 

@@ -1,15 +1,107 @@
 
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { changeLayoutAction, activarErrorAction, crearNuevoIngresoAction } from "../../../../actions/presupuestoActions"
+
+
 import AddIcon from '@material-ui/icons/Add';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import AddPresupuesto from "./addPresupuesto"
+import Meta from "./Meta"
 
-const TopPresupuesto = () => {
 
-    const showPresupuestoForm = () => {
-        console.log("hola")
+const TopPresupuesto = ({actualId}) => {
+
+            const dispatch = useDispatch()
+
+        
+
+
+
+    //UseEffect 
+
+        const errorApp = useSelector( state => state.presupuesto.error) 
+
+        const goBack = e => dispatch( changeLayoutAction(e) )
+
+
+
+    /*==========================================================
+      ==========================================================
+                              ADDPRESUPUESTO
+        ==========================================================
+        ==========================================================*/
+
+        const crearIngreso = (ingreso, actualId) => dispatch( crearNuevoIngresoAction(ingreso, actualId) );
+
+          const erroralaAPP = (state) => dispatch( activarErrorAction(state))
+
+    //addPresupuesto variables
+    const [ nombre, guardarNombre ] = useState("");
+    const [ monto, guardarMonto ] = useState("");
+    const [ tipo, guardarTipo ] = useState("");
+
+    const submitPresupuesto = (e) => {
+
+        
+
+
+        if ( e === "presupuesto") {
+        //validar
+        if ( nombre === "" || monto <= 0  || tipo === "") {
+            erroralaAPP(true)
+            return;
+        }
+            erroralaAPP(false)
+            goBack()
+
+
+        //Convertir a objeto 
+            const ingreso  = {
+                nombre,
+                monto,
+                tipo
+            };
+
+        //Enviar a la API
+            crearIngreso(ingreso, actualId)
+
+        } 
+       
     };
 
-    return ( 
+   
 
+
+
+
+      /*==========================================================
+      ==========================================================
+                              TOPPRESUPUESTO
+        ==========================================================
+        ==========================================================*/
+
+
+
+        //Variable para el show 
+
+        const statepresupuesto = useSelector( state => state.presupuesto.showpresupuesto)
+        const statemeta = useSelector( state => state.presupuesto.showmeta)
+
+    
+
+
+
+
+    const handleSubmit = e => {
+        
+       goBack(e)
+    }
+    
+    
+    
+
+    return ( 
+        
         <div className="all-container-top-presupuesto">
             <div className="content">
                 <div className="type type-1">
@@ -17,7 +109,7 @@ const TopPresupuesto = () => {
                     <ul>
                         <li 
                             className="button button-top"
-                            onClick={ showPresupuestoForm}
+                            onClick={ e =>  handleSubmit("presupuesto")}
                         > <AddIcon />  Añadir/Cambiar</li>
                     </ul>
                 </div>
@@ -36,7 +128,8 @@ const TopPresupuesto = () => {
                       <ul>
                         <li
                             className="button"
-                            
+                            onClick={ e =>  handleSubmit("meta")}
+
                         >  <AddIcon /> Meta: <span>$</span></li>
                         <li>Restante: <span>$</span></li>
                     </ul>
@@ -51,6 +144,24 @@ const TopPresupuesto = () => {
 
             </div>
         <hr/>
+
+        { statepresupuesto  ? 
+         <AddPresupuesto 
+                handleSubmit = {handleSubmit}
+                guardarNombre = {guardarNombre}
+                guardarMonto = {guardarMonto}
+                guardarTipo = {guardarTipo}
+                submitPresupuesto = {submitPresupuesto}
+                errorApp = {errorApp}
+        /> : null}
+
+        {statemeta ? 
+            <Meta 
+                        handleSubmit = {handleSubmit}
+            />
+        :null}
+
+
         </div>
         );
 }

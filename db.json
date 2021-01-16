@@ -1,38 +1,48 @@
 {
   "cuentas": [
     {
-      "id": 1,
-      "email": "Jugo de Zanahoria",
-      "password": "31111"
-    }
-  ],
-  "infoUsuario": [
-    {
-      "email": 1,
-      "presupuesto": "NEGRASOOO",
-      "gastos": "31111",
-      "meta": "",
+      "email": "hola@gmail.com",
+      "password": "Pruena123",
       "id": 1
     },
     {
-      "id": 2,
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
+      "email": "hola2@gmail.com",
+      "password": "Pruena1231",
+      "id": 2
     },
     {
-      "nombre": "Jugo de Naranja",
-      "precio": "300",
+      "email": "hola23@gmail.com",
+      "password": "Pruena12312",
       "id": 3
     },
     {
-      "nombre": "Rib Eye 800g",
-      "precio": "200",
+      "email": "hola234@gmail.com",
+      "password": "Pruena123125",
       "id": 4
+    }
+  ],
+  "cuentasInfo": [
+    {
+      "nombre": "Anashey",
+      "monto": "12",
+      "tipo": "activo",
+      "id": 1
     },
     {
-      "nombre": "Jugo de Fresa",
-      "precio": "200",
-      "id": 5
+      "email": "hola2@gmail.com",
+      "password": "Pruena1231",
+      "id": 2
+    },
+    {
+      "nombre": "Anashey",
+      "monto": "12",
+      "tipo": "activo",
+      "id": 3
+    },
+    {
+      "email": "hola234@gmail.com",
+      "password": "Pruena123125",
+      "id": 4
     }
   ]
 }
