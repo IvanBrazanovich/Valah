@@ -7,10 +7,20 @@ import {
     AGREGAR_INGRESO,
     AGREGAR_INGRESO_ERROR,
     AGREGAR_INGRESO_EXITO,
+    AGREGAR_META,
+    AGREGAR_META_ERROR,
+    AGREGAR_META_EXITO,
     OBTENER_INFOUSUARIO,
     OBTENER_INFOUSUARIO_ERROR,
     OBTENER_INFOUSUARIO_EXITO,
-    CUENTA_ACTUAL
+    CUENTA_ACTUAL,
+    OBTENER_META,
+    OBTENER_INGRESOS,
+    OBTENER_GASTOS,
+    CHANGE_GASTO,
+    AGREGAR_GASTO,
+    AGREGAR_GASTO_EXITO,
+    AGREGAR_GASTO_ERROR
 
 
 } from "../types/index"
@@ -48,10 +58,25 @@ export function obtenerInfoUsuarioAction(cuentaActual) {
             const cuentas = await clienteAxios.get(`/cuentasInfo`) 
             const cuentasInfo = cuentas.data;
             const actualObject = cuentasInfo.filter( cuenta => cuenta.email === cuentaActual);
+
+           
+
+            if ( actualObject[0].ingresos ) {
+                dispatch( storeIngresos(actualObject[0].ingresos) )
+            } 
             
+            if ( actualObject[0].meta ) {
+                dispatch ( storeMeta( actualObject[0].meta ) )
+            }
+
+            if ( actualObject[0].gastos ) {
+                dispatch ( storeGastos( actualObject[0].gastos ) )
+            }
+
+             
+
             const actualId = actualObject[0].id;
 
-            console.log(actualId)
 
                
           dispatch( obtenerInfoUsuarioExito(actualId) )
@@ -80,8 +105,20 @@ export function obtenerInfoUsuarioAction(cuentaActual) {
         type: OBTENER_INFOUSUARIO_ERROR
     });
 
+    const storeIngresos = ingresos => ({
+    type: OBTENER_INGRESOS,
+    payload: ingresos
+});
 
+    const storeMeta = meta => ({
+    type: OBTENER_META,
+    payload: meta
+});
 
+  const storeGastos= gastos => ({
+    type: OBTENER_GASTOS,
+    payload: gastos
+});
 
 //Change page
 export function CambiarPagAction(nombre) {
@@ -97,6 +134,7 @@ const CambiarPag = nombre => ({
 });
 
 export function changeLayoutAction(e) {
+
     
     return (dispatch) => {
 
@@ -106,6 +144,9 @@ export function changeLayoutAction(e) {
         dispatch ( ChangeMeta() )
         } else {
         dispatch( ChangeClose() )
+        }
+        if (e === "gasto") {
+            dispatch( changeGasto() )
         }
     }
 }
@@ -123,7 +164,9 @@ const ChangeMeta = () => ({
     type: CHANGE_META
 });
 
-
+const changeGasto = () => ({
+    type: CHANGE_GASTO
+});
 
 //Errores
 
@@ -143,18 +186,37 @@ const activarError = state => ({
 
 
 export function crearNuevoIngresoAction(ingreso, actualId) {
-    return (dispatch) => {
+    return  async (dispatch) => {
         dispatch ( crearIngreso() )
 
         try {
 
+            //Acceder al json de la app 
+            const cuentaInfo = await clienteAxios.get(`cuentasInfo/${actualId}`);
 
-            //Post en la api 
-            clienteAxios.put(`/cuentasInfo/${actualId}`, ingreso);
+
+
+            const cuenta = cuentaInfo.data;
+
+
+            if(cuenta.ingresos === undefined) {
+                 cuenta.ingresos = [];
+            } 
+
+
+                cuenta.ingresos.push(ingreso)
+
+
+             //Post en la api 
+
+            clienteAxios.put(`/cuentasInfo/${actualId}`, cuenta);
+
+                        console.log(actualId)
 
             
 
-            dispatch( crearIngresoExito(ingreso) )
+            dispatch( crearIngresoExito(ingreso) ) 
+
             
         } catch (error ) {
             console.log(error)
@@ -179,4 +241,119 @@ const crearIngresoExito = (ingreso) => ({
 
 const crearIngresoError = () => ({
     type: AGREGAR_INGRESO_ERROR
+});
+
+
+//Crear meta 
+
+export function crearNuevaMetaAction(meta, actualId) {
+
+    
+
+    return async (dispatch ) => {
+        dispatch( crearMeta() );
+
+        try {
+             //Acceder al json de la app 
+            const cuentaInfo = await clienteAxios.get(`cuentasInfo/${actualId}`);
+
+
+
+            const cuenta = cuentaInfo.data;
+
+
+            cuenta.meta = meta;
+
+             //Post en la api 
+
+            clienteAxios.put(`/cuentasInfo/${actualId}`, cuenta);
+
+            
+
+            dispatch( crearMetaExito(meta) ) 
+              
+
+        } catch (error) {
+            console.log(error)
+            dispatch ( crearMetaError() )
+
+        }
+
+    };  
+}
+
+
+const crearMeta = () => ({
+    type: AGREGAR_META
+});
+
+
+
+const crearMetaExito = (Meta) => ({
+    type: AGREGAR_META_EXITO,
+    payload: Meta
+});
+
+
+const crearMetaError = () => ({
+    type: AGREGAR_META_ERROR
+});
+
+
+
+
+export function crearNuevoGastoAction(gasto, actualId) {
+    return  async (dispatch) => {
+        dispatch ( creargasto() )
+
+        try {
+
+            //Acceder al json de la app 
+            const cuentaInfo = await clienteAxios.get(`cuentasInfo/${actualId}`);
+
+
+
+            const cuenta = cuentaInfo.data;
+
+
+            if(cuenta.gastos === undefined) {
+                 cuenta.gastos = [];
+            } 
+
+
+                cuenta.gastos.push(gasto)
+
+
+             //Post en la api 
+
+            clienteAxios.put(`/cuentasInfo/${actualId}`, cuenta);
+
+                console.log(gasto)
+
+            dispatch( creargastoExito(gasto) ) 
+            
+        } catch (error ) {
+            console.log(error)
+
+            dispatch( creargastoError() )
+
+        }
+    };
+};
+
+
+const creargasto = () => ({
+    type: AGREGAR_GASTO
+});
+
+
+
+const creargastoExito = (gasto) => ({
+    type: AGREGAR_GASTO_EXITO,
+    payload: gasto
+});
+
+
+const creargastoError = () => ({
+    type: AGREGAR_GASTO_ERROR
 });

@@ -11,6 +11,8 @@ import feature6 from "../../img/valah/features/6.png"
 
 
 const FirstLoad = () => {
+
+   
     return ( 
 
         <div className="contenedor">

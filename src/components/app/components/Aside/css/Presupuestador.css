@@ -42,6 +42,10 @@
   margin-bottom: 1rem !important;
 }
 
+.low-ingresos {
+  margin-top: 2rem !important;
+}
+
 .table-presupuesto td {
   padding-left: 1rem !important;
   border-bottom: 1px solid rgba(150, 149, 149, 0.508);
@@ -63,6 +67,11 @@
 
 .top-of-table .add {
   text-align: right;
+  width: fit-content;
+}
+
+.top-of-table .add:hover {
+  cursor: pointer;
 }
 .button:hover {
   cursor: pointer;

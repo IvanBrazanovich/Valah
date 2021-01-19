@@ -1,19 +1,24 @@
 
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { changeLayoutAction, activarErrorAction, crearNuevoIngresoAction } from "../../../../actions/presupuestoActions"
+import { changeLayoutAction, activarErrorAction, crearNuevoIngresoAction, crearNuevaMetaAction, crearNuevoGastoAction} from "../../../../actions/presupuestoActions"
 
 
 import AddIcon from '@material-ui/icons/Add';
 import AddPresupuesto from "./addPresupuesto"
 import Meta from "./Meta"
-
+import AddGasto from "./addGasto"
 
 const TopPresupuesto = ({actualId}) => {
+
+    
+   
 
             const dispatch = useDispatch()
 
         
+             //META
+                const [ meta, guardarMeta ] = useState("");
 
 
 
@@ -33,6 +38,11 @@ const TopPresupuesto = ({actualId}) => {
 
         const crearIngreso = (ingreso, actualId) => dispatch( crearNuevoIngresoAction(ingreso, actualId) );
 
+
+        const crearGasto = (gasto, actualId) => dispatch( crearNuevoGastoAction(gasto, actualId) );
+
+        const crearMeta = (meta, actualId) => dispatch( crearNuevaMetaAction(meta, actualId) );
+
           const erroralaAPP = (state) => dispatch( activarErrorAction(state))
 
     //addPresupuesto variables
@@ -42,30 +52,73 @@ const TopPresupuesto = ({actualId}) => {
 
     const submitPresupuesto = (e) => {
 
-        
-
-
+       
+           
         if ( e === "presupuesto") {
         //validar
         if ( nombre === "" || monto <= 0  || tipo === "") {
             erroralaAPP(true)
             return;
-        }
-            erroralaAPP(false)
+        } 
             goBack()
+            erroralaAPP(false)
 
 
         //Convertir a objeto 
             const ingreso  = {
                 nombre,
                 monto,
-                tipo
+                tipo,
+                id: new Date().getTime()
             };
 
         //Enviar a la API
             crearIngreso(ingreso, actualId)
 
+            //Vaciar state
+            guardarNombre("")
+            guardarMonto("")
+            guardarTipo("")
+
+        } else if ( e  === "meta") {
+            //validar 
+            if( meta === "" ) {
+
+                erroralaAPP(true)
+                return;
+            }
+            erroralaAPP(false)
+            goBack()
+
+            crearMeta(meta, actualId)
+        } else if (e === "gasto") {
+            //validar
+        if ( nombre === "" || monto <= 0  || tipo === "") {
+            erroralaAPP(true)
+            return;
         } 
+            goBack()
+            erroralaAPP(false)
+
+
+        //Convertir a objeto 
+            const gasto  = {
+                nombre,
+                monto,
+                tipo,
+                id: new Date().getTime()
+
+            };
+
+        //Enviar a la API
+            crearGasto(gasto, actualId)
+
+            //Vaciar state
+            guardarNombre("")
+            guardarMonto("")
+            guardarTipo("")
+
+        }
        
     };
 
@@ -86,6 +139,7 @@ const TopPresupuesto = ({actualId}) => {
 
         const statepresupuesto = useSelector( state => state.presupuesto.showpresupuesto)
         const statemeta = useSelector( state => state.presupuesto.showmeta)
+        const stateGasto = useSelector( state => state.presupuesto.showGasto)
 
     
 
@@ -147,7 +201,6 @@ const TopPresupuesto = ({actualId}) => {
 
         { statepresupuesto  ? 
          <AddPresupuesto 
-                handleSubmit = {handleSubmit}
                 guardarNombre = {guardarNombre}
                 guardarMonto = {guardarMonto}
                 guardarTipo = {guardarTipo}
@@ -157,10 +210,22 @@ const TopPresupuesto = ({actualId}) => {
 
         {statemeta ? 
             <Meta 
-                        handleSubmit = {handleSubmit}
+                submitPresupuesto = {submitPresupuesto}
+                errorApp = {errorApp}
+                guardarMeta = {guardarMeta}
+                meta = {meta}
             />
         :null}
 
+        {stateGasto ? 
+            <AddGasto 
+                guardarNombre = {guardarNombre}
+                guardarMonto = {guardarMonto}
+                guardarTipo = {guardarTipo}
+                submitPresupuesto = {submitPresupuesto}
+                errorApp = {errorApp}         
+            />
+        :null}
 
         </div>
         );

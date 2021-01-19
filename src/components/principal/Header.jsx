@@ -2,13 +2,24 @@ import React from 'react';
 import {Fragment} from "react"
 import  Logo from "../../img/valah/Valah-logos_black.png"
 
+import { Link } from "react-router-dom"
+
 import "./css/Basic.css"
 import "./css/Header.css"
 
+import { useHistory } from "react-router-dom"
 
 
 
 const Header = () => {
+
+     let history = useHistory();
+
+    const redirect = () => {
+        history.push('/registrar')
+    }
+
+
     return ( 
         <Fragment>
            <header id="header">
@@ -30,8 +41,8 @@ const Header = () => {
             <div className="contenedor-derecha">
 
                     <ul>
-                    <li>Iniciar Sesión</li>
-                    <li>Registrarse</li>
+                    <Link to='/inicio' className="button-header"  >Iniciar Sesión</Link>
+                    <Link to='/registrar' className="button-header"  >Registrar</Link>
                     </ul>
             </div>
         
@@ -47,7 +58,7 @@ const Header = () => {
 
         <div className="hero-title"><h1>Todo en uno <br/> <span>Tu vida organizada en un solo lugar</span></h1>
         
-                <button>Comienza ahora</button>
+                <button onClick={redirect}>Comienza ahora</button>
 
         </div>
         </div>

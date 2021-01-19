@@ -1,25 +1,23 @@
 
 
-const addPresupuesto = ({guardarMonto, guardarNombre, guardarTipo, submitPresupuesto, errorApp}) => {
 
-   
+const addGasto = ({guardarMonto, guardarNombre, guardarTipo, submitPresupuesto, errorApp}) => {
 
-    const handleSubmitHome = e => {
+
+      const handleSubmitHome = e => {
         e.preventDefault();
-
-        submitPresupuesto("presupuesto");
+        submitPresupuesto("gasto")
     };
 
-    return ( 
-
-        <div className="contenedor-add content-form content-form-presupuesto">
+    return (  
+            <div className="contenedor-add content-form content-form-presupuesto">
             <form 
                 onSubmit={ e => handleSubmitHome(e)}
             >
                 <div className="user-input">
-                     <label htmlFor="ingreso">Ingreso</label>
+                     <label htmlFor="nombre">Nombre</label>
                         <input
-                        name="ingreso"
+                        name="nombre"
                         type="text" 
                          onChange= { e => guardarNombre(e.target.value)}
                         />
@@ -41,8 +39,11 @@ const addPresupuesto = ({guardarMonto, guardarNombre, guardarTipo, submitPresupu
                    onChange= { e => guardarTipo(e.target.value)}
                 name="tipo" id="tipos">
                     <option value=""></option>
-                    <option value="Activo">Activo</option>
-                    <option value="Pasivo">Pasivo</option>
+                    <option value="Fijo">Fijo</option>
+                    <option value="Variable">Variable</option>
+                    <option value="Hormiga">Hormiga</option>
+                    <option value="Discrecional">Discrecional</option>
+                    <option value="Ocio">Ocio</option>
                 </select>
              </div>
 
@@ -54,4 +55,4 @@ const addPresupuesto = ({guardarMonto, guardarNombre, guardarTipo, submitPresupu
      );
 }
  
-export default addPresupuesto;
+export default addGasto;

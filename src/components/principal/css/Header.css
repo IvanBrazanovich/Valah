@@ -80,3 +80,16 @@ ul li {
   background-color: #8aa1b1;
   border: none;
 }
+
+.button-header {
+  margin: 0 0.3rem !important;
+  color: #8aa1b1;
+  border: none;
+  font-size: 18px;
+}
+
+.button-header:hover {
+  color: #8aa1b1;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
