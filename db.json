@@ -2,152 +2,50 @@
   "cuentas": [
     {
       "email": "hola@gmail.com",
-      "password": "Prueba12",
+      "password": "Pruena12",
       "id": 1
-    },
-    {
-      "email": "hola1@gmail.com",
-      "password": "Prueba12",
-      "id": 2
-    },
-    {
-      "email": "hola12@gmail.com",
-      "password": "Prueba12",
-      "id": 3
-    },
-    {
-      "email": "hola123@gmail.com",
-      "password": "Prueba12",
-      "id": 4
-    },
-    {
-      "email": "hola1234@gmail.com",
-      "password": "Prueba12",
-      "id": 5
-    },
-    {
-      "email": "hola12345@gmail.com",
-      "password": "Prueba12",
-      "id": 6
     }
   ],
   "cuentasInfo": [
     {
       "email": "hola@gmail.com",
-      "password": "Prueba12",
+      "password": "Pruena12",
       "id": 1,
-      "ingresos": [
-        {
-          "nombre": "Anashey",
-          "monto": "12",
-          "tipo": "pasivo"
-        },
-        {
-          "nombre": "Otro ingreso pai ",
-          "monto": "200",
-          "tipo": "pasivo"
-        },
-        {
-          "nombre": "Anashey",
-          "monto": "12",
-          "tipo": "activo"
-        },
-        {
-          "nombre": "Anashey",
-          "monto": "12",
-          "tipo": "pasivo"
-        },
-        {
-          "nombre": "Anashey",
-          "monto": "2",
-          "tipo": "activo",
-          "id": 1610976234999
-        },
-        {
-          "nombre": "quinto",
-          "monto": "125",
-          "tipo": "pasivo",
-          "id": 1610976535665
-        },
-        {
-          "nombre": "Tequila",
-          "monto": "120",
-          "tipo": "hormiga",
-          "id": 1610976557302
-        },
-        {
-          "nombre": "Anashey",
-          "monto": "12",
-          "tipo": "activo",
-          "id": 1610976668512
-        },
-        {
-          "nombre": "Otro ingreso naio",
-          "monto": "250",
-          "tipo": "activo",
-          "id": 1610978802565
-        }
-      ],
-      "meta": "120",
       "gastos": [
         {
           "nombre": "Tequila",
-          "monto": "500",
-          "tipo": "variable",
-          "id": 1610976723278
-        },
-        {
-          "nombre": "Otro gasto",
-          "monto": "123",
-          "tipo": "Fijo",
-          "id": 1610977671730
-        },
-        {
-          "nombre": "Cine",
-          "monto": "500",
-          "tipo": "ocio",
-          "id": 1610977736776
-        },
-        {
-          "nombre": "Tequila",
           "monto": "12",
-          "tipo": "Fijo",
-          "id": 1610978789731
+          "tipo": "Variable",
+          "id": 1611148935872
+        },
+        {
+          "nombre": "asadito",
+          "monto": "10",
+          "tipo": "Variable",
+          "id": 1611153085006
         }
-      ]
-    },
-    {
-      "email": "hola1@gmail.com",
-      "password": "Prueba12",
-      "id": 2
-    },
-    {
-      "email": "hola12@gmail.com",
-      "password": "Prueba12",
-      "id": 3
-    },
-    {
-      "email": "hola123@gmail.com",
-      "password": "Prueba12",
-      "id": 4,
-      "meta": "245",
+      ],
       "ingresos": [
         {
-          "nombre": "asadito ",
-          "monto": "800",
-          "tipo": "activo"
+          "nombre": "Editar anashet",
+          "monto": "12",
+          "tipo": "Activo",
+          "id": 1611105149574
+        },
+        {
+          "nombre": "Casa",
+          "monto": "100",
+          "tipo": "Activo",
+          "id": 1611150293328
+        },
+        {
+          "nombre": "otro ingreso",
+          "monto": "123",
+          "tipo": "Activo",
+          "id": 1611151611314
         }
-      ]
-    },
-    {
-      "email": "hola1234@gmail.com",
-      "password": "Prueba12",
-      "id": 5
-    },
-    {
-      "email": "hola12345@gmail.com",
-      "password": "Prueba12",
-      "id": 6
+      ],
+      "meta": "120"
     }
   ]
 }

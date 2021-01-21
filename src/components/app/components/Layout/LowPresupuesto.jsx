@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from "react-redux"
 
 import Gasto from "./Gasto"
 import Ingreso from "./Ingreso"
-import { changeLayoutAction } from "../../../../actions/presupuestoActions"
+import { changeLayoutAction, eliminarGastoAction, eliminarIngresoAction } from "../../../../actions/presupuestoActions"
 
-const LowPresupuesto = () => {
+const LowPresupuesto = ({ handleEditar }) => {
     
     const gastos = useSelector(state => state.presupuesto.gastos)
 
     const ingresos = useSelector(state => state.presupuesto.ingresos)
+
+    const cuentaActual = useSelector(state => state.presupuesto.cuentaActual)
 
     
 
@@ -20,10 +22,46 @@ const LowPresupuesto = () => {
 
            const goBack = e => dispatch( changeLayoutAction(e) )
 
+           const eliminarGasto = (id, cuentaActual)  => dispatch( eliminarGastoAction(id, cuentaActual) )
+
+           const eliminarIngreso = (id, cuentaActual)  => dispatch( eliminarIngresoAction(id, cuentaActual) )
+
     const handleClick = e => {
         
        goBack(e)
     }
+
+
+
+    const eliminarObjecto= (id, tipo ) => {
+
+        if(tipo === "gasto") {
+            eliminarGasto(id, cuentaActual) 
+        }
+
+        if (tipo === "ingreso") {
+            eliminarIngreso(id, cuentaActual) 
+
+        }
+
+    };
+
+    const editarObjecto= (id, tipo ) => {
+
+
+        if(tipo === "gasto") {
+            handleEditar("low", "gasto")
+            eliminarGasto(id, cuentaActual) 
+
+        }
+
+        if (tipo === "ingreso") {
+            handleEditar("low", "ingreso")
+            eliminarIngreso(id, cuentaActual) 
+
+        }
+
+    };
     
     
     return ( 
@@ -53,6 +91,9 @@ const LowPresupuesto = () => {
                     <Gasto
                     gasto = {gasto}
                     key = {gasto.id}
+                    eliminarObjecto = {eliminarObjecto}
+                    editarObjecto = {editarObjecto}
+
                     />
                 ))}
                
@@ -67,9 +108,9 @@ const LowPresupuesto = () => {
             <table className="table-presupuesto">
                 
                         <thead className="table-header">
-                    <td>Gasto</td>
+                    <td>Ingreso</td>
                     <td>Cantidad</td>
-                    <td>Tipo de gasto</td>
+                    <td>Tipo de ingreso</td>
                         <th className="icon-value"> <AssessmentIcon /></th>
                 </thead>
                 
@@ -77,6 +118,8 @@ const LowPresupuesto = () => {
                     <Ingreso
                     ingreso = {ingreso}
                     key = {ingreso.id}
+                    eliminarObjecto = {eliminarObjecto}
+                    editarObjecto = {editarObjecto}
                     />
                 ))}
                

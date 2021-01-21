@@ -20,7 +20,13 @@ import {
     OBTENER_INGRESOS,
     OBTENER_META,
     OBTENER_GASTOS,
-    CHANGE_GASTO
+    CHANGE_GASTO,
+    ELIMINAR_GASTO,
+    ELIMINAR_GASTO_ERROR,
+    ELIMINAR_GASTO_EXITO,
+    ELIMINAR_INGRESO,
+    ELIMINAR_INGRESO_ERROR,
+    ELIMINAR_INGRESO_EXITO
     
 } from "../types/index"
 
@@ -92,6 +98,8 @@ export default function ( state = initialState, action ) {
         case OBTENER_INFOUSUARIO:
         case AGREGAR_META:
         case AGREGAR_GASTO:
+        case ELIMINAR_GASTO:
+        case ELIMINAR_INGRESO:
             return {
                 ...state,
                 loading: true
@@ -99,21 +107,26 @@ export default function ( state = initialState, action ) {
         case AGREGAR_META_EXITO:
             return {
                 ...state,
-                meta: action.payload
+                meta: action.payload,
+                errorApi: false
             }
         case AGREGAR_INGRESO_EXITO:
             return {
                 ...state,
-                ingresos: [...state.ingresos, action.payload]
+                ingresos: [...state.ingresos, action.payload],
+                errorApi: false
             }
         case AGREGAR_GASTO_EXITO:
             return {
                 ...state,
-                gastos: [...state.gastos, action.payload]
+                gastos: [...state.gastos, action.payload],
+                errorApi: false
             }
         case AGREGAR_META_ERROR:
         case OBTENER_INFOUSUARIO_ERROR:
         case AGREGAR_INGRESO_ERROR:
+        case ELIMINAR_GASTO_ERROR:
+        case ELIMINAR_INGRESO_ERROR:
             return {
                 ...state,
                 errorApi: true
@@ -126,7 +139,8 @@ export default function ( state = initialState, action ) {
         case OBTENER_INFOUSUARIO_EXITO:
             return {
                 ...state, 
-                actualId: action.payload
+                actualId: action.payload,
+                errorApi: false
             }
         case OBTENER_INGRESOS:
             return {
@@ -142,6 +156,18 @@ export default function ( state = initialState, action ) {
             return {
                 ...state,
                 gastos: action.payload
+            }
+        case ELIMINAR_GASTO_EXITO:
+            return {
+                ...state,
+                gastos: action.payload,
+                errorApi: false
+            }
+        case ELIMINAR_INGRESO_EXITO:
+            return {
+                ...state,
+                errorApi: false,
+                ingresos: action.payload
             }
     }
 }

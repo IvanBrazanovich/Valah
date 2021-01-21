@@ -20,7 +20,13 @@ import {
     CHANGE_GASTO,
     AGREGAR_GASTO,
     AGREGAR_GASTO_EXITO,
-    AGREGAR_GASTO_ERROR
+    AGREGAR_GASTO_ERROR,
+    ELIMINAR_GASTO,
+    ELIMINAR_GASTO_ERROR,
+    ELIMINAR_GASTO_EXITO,
+    ELIMINAR_INGRESO,
+    ELIMINAR_INGRESO_ERROR,
+    ELIMINAR_INGRESO_EXITO
 
 
 } from "../types/index"
@@ -59,6 +65,7 @@ export function obtenerInfoUsuarioAction(cuentaActual) {
             const cuentasInfo = cuentas.data;
             const actualObject = cuentasInfo.filter( cuenta => cuenta.email === cuentaActual);
 
+            console.log()
            
 
             if ( actualObject[0].ingresos ) {
@@ -211,7 +218,6 @@ export function crearNuevoIngresoAction(ingreso, actualId) {
 
             clienteAxios.put(`/cuentasInfo/${actualId}`, cuenta);
 
-                        console.log(actualId)
 
             
 
@@ -328,7 +334,6 @@ export function crearNuevoGastoAction(gasto, actualId) {
 
             clienteAxios.put(`/cuentasInfo/${actualId}`, cuenta);
 
-                console.log(gasto)
 
             dispatch( creargastoExito(gasto) ) 
             
@@ -356,4 +361,105 @@ const creargastoExito = (gasto) => ({
 
 const creargastoError = () => ({
     type: AGREGAR_GASTO_ERROR
+});
+
+
+
+
+//Eliminar
+export function eliminarGastoAction(id, cuentaActual) {
+    return async  (dispatch) => {
+        dispatch( eliminarGasto() )
+
+
+        try {
+            const cuentas = await clienteAxios.get(`/cuentasInfo`) 
+            const cuentasInfo = cuentas.data;
+            const actualObject = cuentasInfo.filter( cuenta => cuenta.email === cuentaActual);
+
+
+            const nuevoArray = actualObject[0].gastos.filter (gasto => gasto.id !== id)
+
+             actualObject[0].gastos = nuevoArray;
+
+
+            //put en la api 
+
+           clienteAxios.put(`/cuentasInfo/${actualObject[0].id}`, actualObject[0]);
+
+            dispatch( eliminarGastoExito(nuevoArray) )
+        }catch(error) {
+            console.log(error)
+            dispatch( eliminarGastoExito() )
+
+        }
+
+        
+     };
+}
+
+const eliminarGasto = () => ({
+    type: ELIMINAR_GASTO
+});
+
+
+
+const eliminarGastoExito = (nuevoArray) => ({
+    type: ELIMINAR_GASTO_EXITO,
+    payload: nuevoArray
+});
+
+
+const eliminarGastoError = () => ({
+    type: ELIMINAR_GASTO_ERROR
+});
+
+
+
+//Eliminar
+export function eliminarIngresoAction(id, cuentaActual) {
+    return async  (dispatch) => {
+        dispatch( eliminarIngreso() )
+
+
+        try {
+             const cuentas = await clienteAxios.get(`/cuentasInfo`) 
+            const cuentasInfo = cuentas.data;
+
+            const actualObject = cuentasInfo.filter ( cuenta => cuenta.email === cuentaActual);
+
+            const nuevoArray = actualObject[0].ingresos.filter(ingreso => ingreso.id !== id);
+
+            actualObject[0].ingresos = nuevoArray;
+
+            clienteAxios.put(`/cuentasInfo/${actualObject[0].id}`, actualObject[0]);
+
+            dispatch( eliminarIngresoExito(nuevoArray) ) 
+
+
+           
+        }catch(error) {
+            console.log(error)
+            dispatch( eliminarIngresoExito() )
+
+        }
+
+        
+     };
+}
+
+const eliminarIngreso = () => ({
+    type: ELIMINAR_INGRESO
+});
+
+
+
+const eliminarIngresoExito = (nuevoArray) => ({
+    type: ELIMINAR_INGRESO_EXITO,
+    payload: nuevoArray
+});
+
+
+const eliminarIngresoError = () => ({
+    type: ELIMINAR_INGRESO_ERROR
 });

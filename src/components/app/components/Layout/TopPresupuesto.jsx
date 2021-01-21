@@ -3,18 +3,32 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { changeLayoutAction, activarErrorAction, crearNuevoIngresoAction, crearNuevaMetaAction, crearNuevoGastoAction} from "../../../../actions/presupuestoActions"
 
-
+import { obtenerDatosAction } from "../../../../actions/calculosAction"
 import AddIcon from '@material-ui/icons/Add';
 import AddPresupuesto from "./addPresupuesto"
 import Meta from "./Meta"
 import AddGasto from "./addGasto"
 
-const TopPresupuesto = ({actualId}) => {
+const TopPresupuesto = ({actualId, handleSubmit}) => {
 
-    
-   
 
             const dispatch = useDispatch()
+
+        const obtenerDatos = (ingresos, gastos, metaReducer) => dispatch( obtenerDatosAction(ingresos, gastos, metaReducer) )
+
+
+        //obtener datos
+        const ingresos = useSelector(state => state.presupuesto.ingresos);
+        const gastos = useSelector(state => state.presupuesto.gastos);
+        const metaReducer = useSelector(state => state.presupuesto.meta);
+        
+        
+            useEffect ( () => {
+                obtenerDatos(ingresos, gastos, metaReducer)
+            }, [ ingresos, gastos, metaReducer]);
+
+
+
 
         
              //META
@@ -60,6 +74,7 @@ const TopPresupuesto = ({actualId}) => {
             erroralaAPP(true)
             return;
         } 
+
             goBack()
             erroralaAPP(false)
 
@@ -146,10 +161,7 @@ const TopPresupuesto = ({actualId}) => {
 
 
 
-    const handleSubmit = e => {
-        
-       goBack(e)
-    }
+    
     
     
     
