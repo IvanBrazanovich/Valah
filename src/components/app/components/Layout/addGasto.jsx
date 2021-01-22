@@ -42,7 +42,7 @@ const addGasto = ({guardarMonto, guardarNombre, guardarTipo, submitPresupuesto, 
                     <option value="Fijo">Fijo</option>
                     <option value="Variable">Variable</option>
                     <option value="Hormiga">Hormiga</option>
-                    <option value="Discrecional">Discrecional</option>
+                    <option value="Otro">Otro</option>
                     <option value="Ocio">Ocio</option>
                 </select>
              </div>

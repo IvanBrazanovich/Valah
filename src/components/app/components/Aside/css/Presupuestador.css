@@ -10,7 +10,7 @@
 
 .all-container-top-presupuesto .content {
   display: grid;
-  grid-template-columns: repeat(4, 25%);
+  grid-template-columns: 25% 50% 25%;
   justify-content: space-evenly;
   text-align: left;
 }
@@ -20,6 +20,14 @@
 }
 .type {
   margin: 1rem !important;
+  position: relative;
+}
+
+
+
+.container-type {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 .content h3 {
   background-color: #a7afc6;
