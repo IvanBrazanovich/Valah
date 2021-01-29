@@ -252,7 +252,7 @@ const TopPresupuesto = ({actualId, handleSubmit}) => {
                         <li 
                             className="button button-top"
                             onClick={ e =>  handleSubmit("presupuesto")}
-                        > <AddIcon />  Añadir/Cambiar</li>
+                        > <AddIcon />  Añadir Ingreso</li>
 
                         <li
                             className="button"

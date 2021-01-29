@@ -65,7 +65,6 @@ export function obtenerInfoUsuarioAction(cuentaActual) {
             const cuentasInfo = cuentas.data;
             const actualObject = cuentasInfo.filter( cuenta => cuenta.email === cuentaActual);
 
-            console.log()
            
 
             if ( actualObject[0].ingresos ) {
@@ -80,6 +79,7 @@ export function obtenerInfoUsuarioAction(cuentaActual) {
                 dispatch ( storeGastos( actualObject[0].gastos ) )
             }
 
+            
              
 
             const actualId = actualObject[0].id;
@@ -390,7 +390,7 @@ export function eliminarGastoAction(id, cuentaActual) {
             dispatch( eliminarGastoExito(nuevoArray) )
         }catch(error) {
             console.log(error)
-            dispatch( eliminarGastoExito() )
+            dispatch( eliminarGastoError() )
 
         }
 
@@ -440,7 +440,7 @@ export function eliminarIngresoAction(id, cuentaActual) {
            
         }catch(error) {
             console.log(error)
-            dispatch( eliminarIngresoExito() )
+            dispatch( eliminarIngresoError() )
 
         }
 

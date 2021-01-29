@@ -33,7 +33,7 @@ import {
 
 const initialState = {
 
-    cuentaActual: "",
+    cuentaActual: "hola@gmail.com",
     /*El presupuesto va a tener diferentes provenientes de y al final se suman
         el objeto sería así
         {nombre del ingreso, monto, tipo: pasivo/activo}
@@ -52,7 +52,8 @@ const initialState = {
     loading: false,
     errorApi: false,
     actualId: "",
-    showGasto: false
+    showGasto: false,
+    pagactual: ""
 }
 
 
@@ -77,8 +78,7 @@ export default function ( state = initialState, action ) {
                 ...state, 
                 showpresupuesto: true
             }
-            default:
-                return state;
+            
         case CHANGE_META:
             return {
                 ...state,
@@ -169,6 +169,8 @@ export default function ( state = initialState, action ) {
                 errorApi: false,
                 ingresos: action.payload
             }
+        default:
+            return state;    
     }
 }
 

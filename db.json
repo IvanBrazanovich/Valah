@@ -2,18 +2,110 @@
   "cuentas": [
     {
       "email": "hola@gmail.com",
-      "password": "Pruena12",
+      "password": "Prueba12",
       "id": 1
+    },
+    {
+      "email": "hola1@gmail.com",
+      "password": "Prueba12",
+      "id": 2
+    },
+    {
+      "email": "hola2@gmail.com",
+      "password": "Prueba12",
+      "id": 3
+    },
+    {
+      "email": "hola3@gmail.com",
+      "password": "Prueba12",
+      "id": 4
     }
   ],
   "cuentasInfo": [
     {
       "email": "hola@gmail.com",
-      "password": "Pruena12",
+      "password": "Prueba12",
       "id": 1,
       "gastos": [],
-      "ingresos": [],
-      "meta": "0"
+      "meta": "12312",
+      "ingresos": [
+        {
+          "nombre": "400",
+          "monto": "123",
+          "tipo": "Activo",
+          "id": 1611850790320
+        }
+      ],
+      "proyectos": [],
+      "escritos": [
+        {
+          "page": "template",
+          "id": 1611924043223
+        },
+        {
+          "page": "acas",
+          "id": 1611926837817,
+          "text": "asdlasdkasdlkoasdkoaskdaoskdoaksdoaksdokasdokasdokasodkaoskdokok negra entro en  el beat y me sigo sorprendien"
+        },
+        {
+          "page": "asd",
+          "id": 1611933142785,
+          "text": "Ok ahora empiezo y no pienso parar estoy loco negro jamás la voy a cagar como si fuera que sé lo que va a pasar sigo escribiendo y jamás me llego a eq"
+        },
+        {
+          "page": "Es una cosa de locos ",
+          "id": 1611941922310,
+          "text": "asdlasdkasdlkoasdkoaskdaoskdoaksdoaksdokasdokasdokasodkaoskdokok negra entro en  el beat y me sigo sorprendien"
+        },
+        {
+          "page": "anachety",
+          "id": 1611942061053,
+          "text": ""
+        }
+      ],
+      "escritoArray": [
+        {
+          "page": "template",
+          "id": 1611924043223
+        },
+        {
+          "page": "asd",
+          "id": 1611926803360
+        }
+      ]
+    },
+    {
+      "email": "hola1@gmail.com",
+      "password": "Prueba12",
+      "id": 2,
+      "proyectos": [
+        {
+          "name": "asd",
+          "id": 1611680021298
+        },
+        {
+          "name": "asd",
+          "id": 1611680164840
+        },
+        {
+          "name": "Otro proyecto",
+          "id": 1611680180312
+        },
+        {
+          "name": "123",
+          "id": 1611680523019
+        }
+      ]
+    },
+    {
+      "email": "hola2@gmail.com",
+      "password": "Prueba12",
+      "id": 3
+    },
+    {
+      "email": "hola3@gmail.com",
+      "password": "Prueba12",
+      "id": 4
     }
   ]
 }

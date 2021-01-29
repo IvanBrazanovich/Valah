@@ -3,6 +3,7 @@
   height: 100vh;
 }
 
+
 .contenedor-side i {
   width: 1rem !important;
   height: 1rem !important;
@@ -39,6 +40,9 @@
   display: grid;
   grid-template-columns: 10% 90%;
 }
+
+
+
 
 .relleno {
   width: 80%;
@@ -83,4 +87,46 @@ hr {
 
 .page {
   margin: 1rem 2rem !important;
+}
+
+.add-page {
+  display: grid;
+  grid-template-columns: 90%;
+  justify-content: center;
+  
+}
+.add-page input {
+  width: 90%;
+  margin: 0 auto !important;
+}
+
+.add-page .button {
+  border: 1px solid rgba(44, 43, 43, 0.349);
+  margin-top: .3rem !important;
+  transition: .3s ;
+}
+.add-page .button:hover {
+  background-color: rgba(78, 78, 78, 0.836);
+  color: cornsilk;
+}
+
+
+.escrito-input {
+  width: 90% !important;
+  margin: 0 auto !important;
+ 
+    background-attachment: local;
+    background-image:
+        linear-gradient(to right, white 10px, transparent 10px),
+        linear-gradient(to left, white 10px, transparent 10px),
+        repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+    line-height: 31px;
+    padding: 8px 10px;
+    border: none;
+    height: 100vh !important;
+}
+
+.escrito-input:focus {
+  border: none;
+  outline: none;
 }
