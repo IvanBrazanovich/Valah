@@ -33,7 +33,7 @@ import {
 
 const initialState = {
 
-    cuentaActual: "hola@gmail.com",
+    cuentaActual: "",
     /*El presupuesto va a tener diferentes provenientes de y al final se suman
         el objeto sería así
         {nombre del ingreso, monto, tipo: pasivo/activo}
